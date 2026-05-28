@@ -24,6 +24,16 @@ with st.sidebar:
     if st.button('Add'):
         add_expense(date,category,amount,description)
         st.success("Expense Added ! ")
-    st.header
+    st.header('File operations')
+    if st.button('Save Expenses'):
+        save_expenses()
+    if st.button('Load Expenses'):
+        losd_expenses()
+st.header('Expenses')
+st.write(st.session_state.expenses)
+
+st.header('Visualization')
+if st.button('visualize Expenses'):
+    visualize_expenses()
 
 
