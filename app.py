@@ -1,3 +1,5 @@
+import csv
+
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -12,12 +14,12 @@ def add_expense(date,category,amount,description):
     st.session_state.expenses = pd.concat([st.session_state.expenses,new_expense], ignore_index=True)
 
 def load_expenses():
-    uploaded_file = st.file_uploader("chose a file",type['csv'])
+    uploaded_file = st.file_uploader("chose a file",type=['csv'])
     if uploaded_file is not None:
         st.session_state.expenses = pd.read_csv(uploaded_file)
 
 def save_expenses():
-    st.session_state.expenses.to_cvs('expenses.cvs', index=False)
+    st.session_state.expenses.to_csv('expenses.csv', index=False)
     st.success("Expenses saved successfully")   
 
 
@@ -54,6 +56,6 @@ st.write(st.session_state.expenses)
 
 st.header('Visualization')
 if st.button('visualize Expenses'):
-    visualize_expenses
+    visualize_expenses()
 
 
